@@ -3,7 +3,10 @@ const poles = document.querySelectorAll(".pole");
 const gameArea = document.querySelector("#game-area");
 const containerWidth = gameArea.clientWidth;
 const containerHeight = gameArea.clientHeight;
-const speed = 2;
+
+const speedSpan = document.querySelector('#speed');
+let speed;
+
 let animationReq;
 let birdTop;
 
@@ -32,6 +35,10 @@ function updatePoles() {
 
     // Move poles back to the right-hand side of game area.
     polesCurrentPos = 0; // This is based on the "right" property.
+        
+    // Update speed
+    speed += 0.25;
+    speedSpan.textContent = parseInt(speed);
   }
 
   poles.forEach((pole) => {
@@ -68,6 +75,8 @@ function reset() {
   flapping = false;
   playing = true;
   bird.style.top = "20%";
+  speed = 2;
+  speedSpan.textContent = "2";
 
   poles.forEach((pole) => {
     pole.style.right = 0;
