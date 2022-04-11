@@ -45,8 +45,10 @@ function update() {
 
 function updateBird() {
     let birdTop = parseFloat(window.getComputedStyle(bird).getPropertyValue("top"));
-    if (birdTop < containerHeight - bird.clientHeight) {
-            bird.style.top = birdTop + 2 + "px";
+    if (flapping) {
+        bird.style.top = birdTop + -2 + "px";
+    } else if (birdTop < containerHeight - bird.clientHeight) {
+        bird.style.top = birdTop + 2 + "px";
     }
 }
 
@@ -56,6 +58,10 @@ function gameLoop() {
 }
 
 function reset() {
+  flapping = false;
+  playing = true;
+  bird.style.top = "20%";
+  
   poles.forEach((pole) => {
     pole.style.right = 0;
   });
