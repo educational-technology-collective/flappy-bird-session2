@@ -36,6 +36,14 @@ function updatePoles() {
 
 function update() {
   updatePoles();
+  updateBird();
+}
+
+function updateBird() {
+    let birdTop = parseFloat(window.getComputedStyle(bird).getPropertyValue("top"));
+    if (birdTop < containerHeight - bird.clientHeight) {
+            bird.style.top = birdTop + 2 + "px";
+    }
 }
 
 function gameLoop() {
