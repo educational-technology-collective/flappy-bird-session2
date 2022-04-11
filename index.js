@@ -6,6 +6,10 @@ const containerHeight = gameArea.clientHeight;
 const speed = 2;
 let animationReq;
 
+//Add a new variable to capture whether the bird is flapping or not
+let flapping;
+let playing;
+
 function startGame() {
   reset();
   gameLoop();
@@ -61,3 +65,17 @@ function reset() {
 }
 
 restartBtn.addEventListener("click", startGame);
+
+// Start flapping with mousedown
+gameArea.addEventListener("mousedown", function (e) {
+    if (playing) {
+        flapping = true;
+    }
+});
+  
+// Stop flapping with mousedown
+gameArea.addEventListener("mouseup", function (e) {
+    if (playing) {
+        flapping = false;
+    }
+});
