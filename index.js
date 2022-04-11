@@ -5,6 +5,7 @@ const containerWidth = gameArea.clientWidth;
 const containerHeight = gameArea.clientHeight;
 const speed = 2;
 let animationReq;
+let birdTop;
 
 //Add a new variable to capture whether the bird is flapping or not
 let flapping;
@@ -41,10 +42,14 @@ function updatePoles() {
 function update() {
   updatePoles();
   updateBird();
+  // Check for collisions
+  if (collision(bird, poles[0]) || collision(bird, poles[1]) || birdTop <= 0 || birdTop > containerHeight - bird.clientHeight) {
+    gameOver();
+  }
 }
 
 function updateBird() {
-    let birdTop = parseFloat(window.getComputedStyle(bird).getPropertyValue("top"));
+    birdTop = parseFloat(window.getComputedStyle(bird).getPropertyValue("top"));
     if (flapping) {
         bird.style.top = birdTop + -2 + "px";
     } else if (birdTop < containerHeight - bird.clientHeight) {
