@@ -14,6 +14,9 @@ let birdTop;
 let flapping;
 let playing;
 
+const scoreSpan = document.querySelector('#score');
+let score;
+
 function startGame() {
   reset();
   gameLoop();
@@ -39,6 +42,10 @@ function updatePoles() {
     // Update speed
     speed += 0.25;
     speedSpan.textContent = parseInt(speed);
+
+    // this flag indicates that the score needs to be changed in next rendering
+    score += 1;
+    scoreSpan.textContent = score;
   }
 
   poles.forEach((pole) => {
@@ -76,6 +83,7 @@ function reset() {
   playing = true;
   bird.style.top = "20%";
   speed = 2;
+  score = 0;
   speedSpan.textContent = "2";
 
   poles.forEach((pole) => {
