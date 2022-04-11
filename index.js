@@ -54,20 +54,27 @@ function updateBird() {
 
 function gameLoop() {
   update();
-  animationReq = requestAnimationFrame(gameLoop);
+  if (playing) {
+    animationReq = requestAnimationFrame(gameLoop);
+  }
 }
 
 function reset() {
   flapping = false;
   playing = true;
   bird.style.top = "20%";
-  
+
   poles.forEach((pole) => {
     pole.style.right = 0;
   });
   if (animationReq) {
     cancelAnimationFrame(animationReq);
   }
+}
+
+function gameOver() {
+    playing = false;
+    restartBtn.addEventListener('click', startGame);
 }
 
 restartBtn.addEventListener("click", startGame);
